@@ -17,10 +17,12 @@ export function initAnalytics() {
   document.head.appendChild(script);
 
   window.dataLayer = window.dataLayer || [];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments);
   }
-  window.gtag = gtag;
+  window.gtag = gtag as (...args: unknown[]) => void;
   gtag("js", new Date());
   gtag("config", MEASUREMENT_ID);
 }
